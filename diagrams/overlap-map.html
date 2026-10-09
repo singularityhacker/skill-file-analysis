@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skill Pack Overlap Map</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 48px; }
+  h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; color: #fff; }
+  .subtitle { font-size: 16px; color: #888; margin-bottom: 48px; }
+
+  .section-title { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  .section-title .dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  .all-three .dot { background: #f59e0b; }
+  .two-of-three .dot { background: #6366f1; }
+
+  table { width: 100%; border-collapse: collapse; margin-bottom: 48px; }
+  th { text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #666; padding: 10px 16px; border-bottom: 2px solid #222; }
+  td { padding: 12px 16px; border-bottom: 1px solid #1a1a1a; font-size: 14px; vertical-align: top; }
+  tr:hover { background: rgba(255,255,255,0.02); }
+
+  .capability { font-weight: 600; color: #fff; }
+  .has { color: #4ade80; font-size: 13px; }
+  .missing { color: #444; font-style: italic; font-size: 13px; }
+
+  .check { display: inline-block; width: 20px; height: 20px; border-radius: 50%; text-align: center; line-height: 20px; font-size: 12px; font-weight: 700; }
+  .check.yes { background: #166534; color: #4ade80; }
+  .check.no { background: #1c1c1c; color: #444; }
+
+  .impl-detail { font-size: 12px; color: #888; margin-top: 4px; line-height: 1.4; }
+
+  .legend { display: flex; gap: 24px; margin-bottom: 32px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #888; }
+</style>
+</head>
+<body>
+
+<h1>The Overlap Map</h1>
+<p class="subtitle">Where the three skill packs converge and diverge</p>
+
+<div class="legend">
+  <div class="legend-item"><span class="check yes">&#10003;</span> Has this capability</div>
+  <div class="legend-item"><span class="check no">&mdash;</span> Missing</div>
+</div>
+
+<div class="all-three">
+  <div class="section-title"><span class="dot"></span> Present in All Three</div>
+  <table>
+    <tr>
+      <th style="width:18%">Capability</th>
+      <th style="width:27%">Gstack</th>
+      <th style="width:27%">Pstack</th>
+      <th style="width:27%">Matt's Skills</th>
+    </tr>
+    <tr>
+      <td class="capability">TDD / Test-first</td>
+      <td class="has">Embedded in QA skills, test-audit<div class="impl-detail">"Tests are the cheapest lake to boil"</div></td>
+      <td class="has">/tdd skill, pragmatic skip option<div class="impl-detail">Bug-fix focused TDD</div></td>
+      <td class="has">/tdd with strict red-green<div class="impl-detail">Pre-agreed seams, 3 banned anti-patterns</div></td>
+    </tr>
+    <tr>
+      <td class="capability">Code Review</td>
+      <td class="has">/review<div class="impl-detail">SQL safety, LLM trust boundaries</div></td>
+      <td class="has">/interrogate<div class="impl-detail">Multi-model adversarial panel</div></td>
+      <td class="has">/code-review<div class="impl-detail">Two axes: standards + spec compliance</div></td>
+    </tr>
+    <tr>
+      <td class="capability">Anti-slop</td>
+      <td class="has">slop-scan + banned vocabulary<div class="impl-detail">Enforced by tooling, not suggestions</div></td>
+      <td class="has">/unslop<div class="impl-detail">33 cataloged AI writing patterns</div></td>
+      <td class="has">/wait-what<div class="impl-detail">3 lines. Triggers re-explanation.</div></td>
+    </tr>
+    <tr>
+      <td class="capability">Git / PR Discipline</td>
+      <td class="has">/ship with version queue<div class="impl-detail">Atomic bisect commits</div></td>
+      <td class="has">PR playbook<div class="impl-detail">Conventional commits, ordered</div></td>
+      <td class="has">/pr<div class="impl-detail">Summary + Evidence + Merge Danger</div></td>
+    </tr>
+    <tr>
+      <td class="capability">Planning / Spec</td>
+      <td class="has">/spec, /office-hours, /autoplan<div class="impl-detail">Full review gauntlet</div></td>
+      <td class="has">/poteto-mode<div class="impl-detail">23 playbooks, router-based</div></td>
+      <td class="has">/grill-with-docs &rarr; /to-spec<div class="impl-detail">Interview then synthesize</div></td>
+    </tr>
+    <tr>
+      <td class="capability">Bug Investigation</td>
+      <td class="has">/investigate<div class="impl-detail">No fix without investigation</div></td>
+      <td class="has">/why + /blast-radius<div class="impl-detail">Multi-source evidence gathering</div></td>
+      <td class="has">/diagnosing-bugs<div class="impl-detail">6-phase diagnosis loop</div></td>
+    </tr>
+    <tr>
+      <td class="capability">Context Handoff</td>
+      <td class="has">/context-save + /context-restore</td>
+      <td class="has">/recall + /show-me-your-work</td>
+      <td class="has">/handoff</td>
+    </tr>
+    <tr>
+      <td class="capability">Retrospective</td>
+      <td class="has">/retro + /learn<div class="impl-detail">Weekly with shipping streaks</div></td>
+      <td class="has">/reflect + /correct<div class="impl-detail">Fix at highest level that works</div></td>
+      <td class="has">/retro<div class="impl-detail">Environment improvements only</div></td>
+    </tr>
+    <tr>
+      <td class="capability">Documentation</td>
+      <td class="has">/document-generate<div class="impl-detail">Diataxis framework</div></td>
+      <td class="has">/technical-writing<div class="impl-detail">Diataxis + Google + STE + Global English</div></td>
+      <td class="has">/writing-for-agents<div class="impl-detail">Leading words, no-op test</div></td>
+    </tr>
+  </table>
+</div>
+
+<div class="two-of-three">
+  <div class="section-title"><span class="dot"></span> Present in Two of Three</div>
+  <table>
+    <tr>
+      <th style="width:18%">Capability</th>
+      <th style="width:27%">Gstack</th>
+      <th style="width:27%">Pstack</th>
+      <th style="width:27%">Matt's Skills</th>
+    </tr>
+    <tr>
+      <td class="capability">Multi-model Review</td>
+      <td class="has"><span class="check yes">&#10003;</span> /codex second opinion</td>
+      <td class="has"><span class="check yes">&#10003;</span> /interrogate, /arena</td>
+      <td class="missing"><span class="check no">&mdash;</span></td>
+    </tr>
+    <tr>
+      <td class="capability">Design / Visual Review</td>
+      <td class="has"><span class="check yes">&#10003;</span> 4 design skills</td>
+      <td class="has"><span class="check yes">&#10003;</span> /architect</td>
+      <td class="missing"><span class="check no">&mdash;</span></td>
+    </tr>
+    <tr>
+      <td class="capability">Browser QA</td>
+      <td class="has"><span class="check yes">&#10003;</span> Aside + Chromium</td>
+      <td class="has"><span class="check yes">&#10003;</span> Verification skills</td>
+      <td class="missing"><span class="check no">&mdash;</span></td>
+    </tr>
+    <tr>
+      <td class="capability">Issue Triage</td>
+      <td class="missing"><span class="check no">&mdash;</span></td>
+      <td class="has"><span class="check yes">&#10003;</span> Benny automation</td>
+      <td class="has"><span class="check yes">&#10003;</span> /triage state machine</td>
+    </tr>
+    <tr>
+      <td class="capability">Domain Modeling</td>
+      <td class="missing"><span class="check no">&mdash;</span></td>
+      <td class="has"><span class="check yes">&#10003;</span> principle-model-the-domain</td>
+      <td class="has"><span class="check yes">&#10003;</span> /domain-modeling + GLOSSARY.md</td>
+    </tr>
+    <tr>
+      <td class="capability">Safety Hooks</td>
+      <td class="has"><span class="check yes">&#10003;</span> /careful, /freeze, /guard</td>
+      <td class="has"><span class="check yes">&#10003;</span> Principles-based</td>
+      <td class="missing"><span class="check no">&mdash;</span></td>
+    </tr>
+    <tr>
+      <td class="capability">Overnight Autonomy</td>
+      <td class="has"><span class="check yes">&#10003;</span> Context save/restore</td>
+      <td class="has"><span class="check yes">&#10003;</span> Autopilot + decision logs</td>
+      <td class="missing"><span class="check no">&mdash;</span></td>
+    </tr>
+  </table>
+</div>
+
+</body>
+</html>

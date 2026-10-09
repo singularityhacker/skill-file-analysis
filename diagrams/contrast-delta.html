@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Contrast Test Delta</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 48px; }
+  h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; color: #fff; }
+  .subtitle { font-size: 16px; color: #888; margin-bottom: 48px; }
+
+  .comparison { display: grid; grid-template-columns: 1fr 80px 1fr; gap: 0; margin-bottom: 48px; }
+
+  .side { padding: 32px; border-radius: 16px; }
+  .side.cold { background: #1a1a1a; border: 1px solid #2a2a2a; }
+  .side.skilled { background: #0f1a15; border: 1px solid #1e352a; }
+
+  .side-title { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .side.cold .side-title { color: #888; }
+  .side.skilled .side-title { color: #34d399; }
+  .side-subtitle { font-size: 13px; color: #666; margin-bottom: 24px; }
+
+  .divider { display: flex; align-items: center; justify-content: center; }
+  .vs { font-size: 14px; font-weight: 700; color: #444; background: #151515; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid #222; }
+
+  .item { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .item:last-child { border-bottom: none; }
+  .item-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .side.cold .item-label { color: #555; }
+  .side.skilled .item-label { color: #10b981; }
+  .item-value { font-size: 14px; line-height: 1.5; }
+  .side.cold .item-value { color: #999; }
+  .side.skilled .item-value { color: #d1fae5; }
+
+  .delta-section { margin-top: 48px; }
+  .delta-title { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 24px; }
+
+  .delta-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .delta-card { background: #111; border: 1px solid #222; border-radius: 16px; padding: 28px; position: relative; overflow: hidden; }
+  .delta-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+
+  .delta-number { font-size: 48px; font-weight: 800; color: #f59e0b; opacity: 0.3; position: absolute; top: 12px; right: 20px; }
+  .delta-card h3 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .delta-card p { font-size: 13px; color: #aaa; line-height: 1.6; }
+  .delta-card .cold-did { font-size: 12px; color: #666; margin-top: 12px; padding-top: 12px; border-top: 1px solid #222; }
+  .delta-card .skill-did { font-size: 12px; color: #34d399; margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<h1>The Contrast Test</h1>
+<p class="subtitle">Same model. Same prompt. "I want to build a to-do app. What would you set up for me?"</p>
+
+<div class="comparison">
+  <div class="side cold">
+    <div class="side-title">Raw Model</div>
+    <div class="side-subtitle">No skill files loaded</div>
+
+    <div class="item">
+      <div class="item-label">First move</div>
+      <div class="item-value">Jumped straight to tech stack. React + Express + Postgres + Prisma.</div>
+    </div>
+    <div class="item">
+      <div class="item-label">Requirements</div>
+      <div class="item-value">Assumed auth, priorities, drag-and-drop, monorepo without asking.</div>
+    </div>
+    <div class="item">
+      <div class="item-label">Domain model</div>
+      <div class="item-value">Generic types.ts file. No ubiquitous language.</div>
+    </div>
+    <div class="item">
+      <div class="item-label">Testing</div>
+      <div class="item-value">Listed 3 frameworks. Priority-ordered what to test. No philosophy.</div>
+    </div>
+    <div class="item">
+      <div class="item-label">Code review</div>
+      <div class="item-value">Not mentioned.</div>
+    </div>
+    <div class="item">
+      <div class="item-label">PR structure</div>
+      <div class="item-value">Not mentioned.</div>
+    </div>
+    <div class="item">
+      <div class="item-label">After deploy</div>
+      <div class="item-value">Nothing. The lifecycle ends at "deploy."</div>
+    </div>
+    <div class="item">
+      <div class="item-label">Database</div>
+      <div class="item-value">PostgreSQL. No justification given.</div>
+    </div>
+  </div>
+
+  <div class="divider">
+    <div class="vs">vs</div>
+  </div>
+
+  <div class="side skilled">
+    <div class="side-title">With Skill Pack</div>
+    <div class="side-subtitle">Consistent across all three packs</div>
+
+    <div class="item">
+      <div class="item-label">First move</div>
+      <div class="item-value">Led with philosophy. Questioned the premise. Framed the approach before any tech decisions.</div>
+    </div>
+    <div class="item">
+      <div class="item-label">Requirements</div>
+      <div class="item-value">Asked what "complete" means. Asked about multi-user. Listed unresolved branches. Only built what survived the interview.</div>
+    </div>
+    <div class="item">
+      <div class="item-label">Domain model</div>
+      <div class="item-value">Discriminated unions. Branded types. GLOSSARY.md with _Avoid_ synonyms. State machines.</div>
+    </div>
+    <div class="item">
+      <div class="item-label">Testing</div>
+      <div class="item-value">Red-green at pre-agreed seams. 3 banned anti-patterns. "Test behavior, not implementation." Principles, not just tools.</div>
+    </div>
+    <div class="item">
+      <div class="item-label">Code review</div>
+      <div class="item-value">Defined process: multi-model panels, two-axis review, SQL safety checks. Separate from implementation.</div>
+    </div>
+    <div class="item">
+      <div class="item-label">PR structure</div>
+      <div class="item-value">Summary (visual), Evidence (before/after), Merge Danger (one-way / two-way door).</div>
+    </div>
+    <div class="item">
+      <div class="item-label">After deploy</div>
+      <div class="item-value">Canary monitoring. Retrospectives. Environment improvements. Learning loops.</div>
+    </div>
+    <div class="item">
+      <div class="item-label">Database</div>
+      <div class="item-value">SQLite. All three argued for it with reasoning: "search before building" / "laziness protocol" / simplicity.</div>
+    </div>
+  </div>
+</div>
+
+<div class="delta-section">
+  <div class="delta-title">The Three Biggest Deltas</div>
+  <div class="delta-cards">
+    <div class="delta-card">
+      <div class="delta-number">1</div>
+      <h3>Requirements Discovery</h3>
+      <p>The skill-informed model asks what you need. The raw model builds what it guesses.</p>
+      <div class="cold-did">Cold: Assumed auth, priorities, drag-and-drop, monorepo</div>
+      <div class="skill-did">Skills: "What does 'complete' mean? Do you need auth? Multi-user?"</div>
+    </div>
+    <div class="delta-card">
+      <div class="delta-number">2</div>
+      <h3>Principles Over Tools</h3>
+      <p>The raw model says "use Vitest." The skill-informed model says "test behavior at pre-agreed seams, never mock your own modules."</p>
+      <div class="cold-did">Cold: Listed frameworks and priority order</div>
+      <div class="skill-did">Skills: Defined philosophy, banned anti-patterns, cited literature</div>
+    </div>
+    <div class="delta-card">
+      <div class="delta-number">3</div>
+      <h3>The Full Lifecycle</h3>
+      <p>The raw model's lifecycle is scaffold &rarr; implement &rarr; deploy. The skill-informed model adds everything before and after.</p>
+      <div class="cold-did">Cold: Nothing before code. Nothing after deploy.</div>
+      <div class="skill-did">Skills: Grilling, spec, tickets, review, PR structure, canary, retro</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

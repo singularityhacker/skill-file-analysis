@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Not Just Markdown</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 48px; }
+  h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; color: #fff; }
+  .subtitle { font-size: 16px; color: #888; margin-bottom: 56px; }
+
+  /* Complexity Spectrum */
+  .spectrum { position: relative; margin-bottom: 64px; }
+  .spectrum-bar { height: 6px; border-radius: 3px; background: linear-gradient(90deg, #34d399, #60a5fa, #a78bfa); margin-bottom: 8px; }
+  .spectrum-labels { display: flex; justify-content: space-between; font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 40px; }
+
+  .spectrum-packs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+
+  .spec-pack { border-radius: 16px; padding: 28px; position: relative; }
+  .spec-pack.matt { background: #151a18; border: 1px solid #1e352a; grid-column: 1; }
+  .spec-pack.pstack { background: #151a20; border: 1px solid #1e2a35; grid-column: 2; }
+  .spec-pack.gstack { background: #1a1520; border: 1px solid #2d2235; grid-column: 3; }
+
+  .spec-pack-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .spec-pack.matt .spec-pack-name { color: #34d399; }
+  .spec-pack.pstack .spec-pack-name { color: #60a5fa; }
+  .spec-pack.gstack .spec-pack-name { color: #a78bfa; }
+
+  .spec-pack-label { font-size: 12px; color: #888; margin-bottom: 16px; }
+
+  .contents { list-style: none; }
+  .contents li { font-size: 13px; padding: 5px 0; color: #bbb; display: flex; align-items: center; gap: 8px; }
+  .contents li .icon { width: 18px; height: 18px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; flex-shrink: 0; }
+  .icon.md { background: #1e3528; color: #6ee7b7; }
+  .icon.json { background: #1e2d45; color: #93c5fd; }
+  .icon.ts { background: #2d1f45; color: #c4b5fd; }
+  .icon.bin { background: #3d1f25; color: #fca5a5; }
+  .icon.yaml { background: #2d2d1f; color: #fde68a; }
+
+  /* How it works section */
+  .how-section { margin-top: 64px; }
+  .how-title { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 32px; }
+
+  .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 48px; }
+  .flow-step { background: #111; border: 1px solid #222; border-radius: 12px; padding: 24px; text-align: center; position: relative; }
+  .flow-step::after { content: '\2192'; position: absolute; right: -14px; top: 50%; transform: translateY(-50%); color: #333; font-size: 20px; }
+  .flow-step:last-child::after { display: none; }
+  .flow-step-num { font-size: 32px; font-weight: 800; color: #f59e0b; opacity: 0.3; margin-bottom: 8px; }
+  .flow-step h3 { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .flow-step p { font-size: 12px; color: #888; line-height: 1.5; }
+
+  /* Invocation types */
+  .invocation { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px; }
+  .invoke-card { border-radius: 12px; padding: 28px; }
+  .invoke-card.user { background: #111a15; border: 1px solid #1e352a; }
+  .invoke-card.model { background: #1a1115; border: 1px solid #35221e; }
+  .invoke-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .invoke-card.user h3 { color: #34d399; }
+  .invoke-card.model h3 { color: #f59e0b; }
+  .invoke-card .desc { font-size: 13px; color: #aaa; line-height: 1.6; margin-bottom: 16px; }
+  .invoke-example { background: #0a0a0a; border-radius: 8px; padding: 14px 18px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 13px; }
+  .invoke-card.user .invoke-example { color: #6ee7b7; }
+  .invoke-card.model .invoke-example { color: #fde68a; }
+  .invoke-comment { color: #555; }
+
+  /* Discovery */
+  .discovery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 48px; }
+  .disc-card { border-radius: 12px; padding: 24px; }
+  .disc-card.gstack { background: #1a1520; border: 1px solid #2d2235; }
+  .disc-card.pstack { background: #151a20; border: 1px solid #1e2a35; }
+  .disc-card.matt { background: #151a18; border: 1px solid #1e352a; }
+  .disc-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .disc-card.gstack h3 { color: #a78bfa; }
+  .disc-card.pstack h3 { color: #60a5fa; }
+  .disc-card.matt h3 { color: #34d399; }
+  .disc-method { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 4px; margin-top: 12px; }
+  .disc-desc { font-size: 12px; color: #888; line-height: 1.5; }
+
+  /* Compat table */
+  .compat { margin-top: 48px; }
+  .compat h2 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 20px; }
+  .compat table { width: 100%; border-collapse: collapse; }
+  .compat th { text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #666; padding: 10px 16px; border-bottom: 2px solid #222; }
+  .compat td { padding: 12px 16px; border-bottom: 1px solid #1a1a1a; font-size: 13px; }
+  .compat tr:hover { background: rgba(255,255,255,0.02); }
+  .primary { color: #4ade80; font-weight: 600; }
+  .supported { color: #ccc; }
+  .agent-tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 4px; background: rgba(255,255,255,0.06); color: #aaa; margin: 2px 2px; }
+</style>
+</head>
+<body>
+
+<h1>Not "Just Markdown"</h1>
+<p class="subtitle">The actual mechanics behind skill packs: slash commands, routing, binaries, and plugin systems</p>
+
+<!-- Complexity Spectrum -->
+<div class="spectrum">
+  <div class="spectrum-bar"></div>
+  <div class="spectrum-labels">
+    <span>Prompt templates</span>
+    <span>Structured system</span>
+    <span>Development platform</span>
+  </div>
+  <div class="spectrum-packs">
+    <div class="spec-pack matt">
+      <div class="spec-pack-name">Matt's Skills</div>
+      <div class="spec-pack-label">Hand-written markdown, no build step</div>
+      <ul class="contents">
+        <li><span class="icon md">md</span> SKILL.md files (source of truth)</li>
+        <li><span class="icon md">md</span> Reference docs skills can read</li>
+        <li><span class="icon json">js</span> Plugin manifest (plugin.json)</li>
+        <li><span class="icon yaml">ya</span> Per-agent metadata (openai.yaml)</li>
+        <li><span class="icon json">js</span> Marketplace registration</li>
+      </ul>
+    </div>
+    <div class="spec-pack pstack">
+      <div class="spec-pack-name">Pstack</div>
+      <div class="spec-pack-label">Skills + playbooks + subagents</div>
+      <ul class="contents">
+        <li><span class="icon md">md</span> SKILL.md files</li>
+        <li><span class="icon md">md</span> 23 playbook files (routing targets)</li>
+        <li><span class="icon md">md</span> Reference docs per skill</li>
+        <li><span class="icon md">md</span> Subagent definitions (2)</li>
+        <li><span class="icon md">md</span> Benny automation pack</li>
+        <li><span class="icon json">js</span> Cursor plugin manifest</li>
+      </ul>
+    </div>
+    <div class="spec-pack gstack">
+      <div class="spec-pack-name">Gstack</div>
+      <div class="spec-pack-label">Full software product with build system</div>
+      <ul class="contents">
+        <li><span class="icon ts">ts</span> SKILL.md.tmpl templates (actual source)</li>
+        <li><span class="icon md">md</span> SKILL.md files (generated output)</li>
+        <li><span class="icon ts">ts</span> 60+ CLI utilities (TypeScript)</li>
+        <li><span class="icon bin">ex</span> Compiled Bun binaries (~62MB)</li>
+        <li><span class="icon bin">ex</span> Headless Chromium browser</li>
+        <li><span class="icon ts">ts</span> Build scripts + template renderer</li>
+        <li><span class="icon ts">ts</span> E2E test suite</li>
+        <li><span class="icon json">js</span> Chrome extension</li>
+        <li><span class="icon yaml">ya</span> CI/CD pipelines</li>
+        <li><span class="icon json">js</span> Per-host configurations</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- How Skills Actually Work -->
+<div class="how-section">
+  <div class="how-title">How a Skill Gets Invoked</div>
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-step-num">1</div>
+      <h3>You type a command</h3>
+      <p>/tdd, /ship, /review -- or describe a task in plain language</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-step-num">2</div>
+      <h3>Router matches it</h3>
+      <p>Root skill or plugin system maps your input to the right SKILL.md</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-step-num">3</div>
+      <h3>Skill loads on demand</h3>
+      <p>Only that skill's SKILL.md enters context. Not the whole pack. Token-budgeted.</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-step-num">4</div>
+      <h3>Agent follows it</h3>
+      <p>The SKILL.md contains structured instructions the agent executes as a workflow</p>
+    </div>
+  </div>
+
+  <!-- Invocation Types -->
+  <div class="how-title">Two Types of Invocation</div>
+  <div class="invocation">
+    <div class="invoke-card user">
+      <h3>User-Invoked</h3>
+      <div class="desc">You type the command. The agent can never fire this on its own. Used for high-stakes workflows where human intent matters.</div>
+      <div class="invoke-example">
+        <span class="invoke-comment"># You type:</span><br>
+        /ship<br>
+        /grill-with-docs<br>
+        /setup-pstack
+      </div>
+    </div>
+    <div class="invoke-card model">
+      <h3>Model-Invoked</h3>
+      <div class="desc">The agent decides to fire this when the task matches trigger phrases in the skill's metadata. Happens autonomously during work.</div>
+      <div class="invoke-example">
+        <span class="invoke-comment"># Agent sees you debugging, auto-fires:</span><br>
+        /diagnosing-bugs<br><br>
+        <span class="invoke-comment"># Agent hits a design question, auto-fires:</span><br>
+        /prototype
+      </div>
+    </div>
+  </div>
+
+  <!-- Discovery -->
+  <div class="how-title">How Users Find the Right Command</div>
+  <div class="discovery">
+    <div class="disc-card gstack">
+      <h3>Gstack</h3>
+      <div class="disc-method">Root Router</div>
+      <div class="disc-desc">The root SKILL.md pattern-matches natural language. Describe what you want; it routes you to the right skill. No memorization needed.</div>
+      <div class="disc-method">Also: /learn</div>
+      <div class="disc-desc">Shows what gstack has learned and what's available.</div>
+    </div>
+    <div class="disc-card pstack">
+      <h3>Pstack</h3>
+      <div class="disc-method">/poteto-help</div>
+      <div class="disc-desc">"Stuck, or unsure which skill fits? Ask." Recommends the right skill or playbook and gives you the prompt to send.</div>
+      <div class="disc-method">Also: Cursor's / menu</div>
+      <div class="disc-desc">Browse all registered skills in the IDE's slash-command picker.</div>
+    </div>
+    <div class="disc-card matt">
+      <h3>Matt's Skills</h3>
+      <div class="disc-method">/ask-matt</div>
+      <div class="disc-desc">"You don't remember every skill, so ask." Maps your situation to the right skill or sequence. Recommends and stops; never starts work itself.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Agent Compatibility -->
+<div class="compat">
+  <h2>Agent Harness Compatibility</h2>
+  <table>
+    <tr>
+      <th style="width:15%">Pack</th>
+      <th style="width:15%">Primary</th>
+      <th style="width:20%">Install</th>
+      <th>Also works with</th>
+    </tr>
+    <tr>
+      <td style="color:#a78bfa; font-weight:600">Gstack</td>
+      <td class="primary">Claude Code</td>
+      <td style="color:#aaa">git clone + ./setup</td>
+      <td>
+        <span class="agent-tag">Codex</span>
+        <span class="agent-tag">Cursor</span>
+        <span class="agent-tag">Copilot CLI</span>
+        <span class="agent-tag">OpenCode</span>
+        <span class="agent-tag">Kiro</span>
+        <span class="agent-tag">Factory Droid</span>
+        <span class="agent-tag">Antigravity</span>
+        <span class="agent-tag">+4 more</span>
+      </td>
+    </tr>
+    <tr>
+      <td style="color:#60a5fa; font-weight:600">Pstack</td>
+      <td class="primary">Cursor</td>
+      <td style="color:#aaa">/add-plugin pstack</td>
+      <td>
+        <span class="agent-tag">Claude Code</span>
+        <span class="agent-tag">Codex</span>
+        <span class="agent-tag">Pi</span>
+        <span class="agent-tag">OpenCode</span>
+      </td>
+    </tr>
+    <tr>
+      <td style="color:#34d399; font-weight:600">Matt's Skills</td>
+      <td class="primary">Claude Code</td>
+      <td style="color:#aaa">claude plugin install</td>
+      <td>
+        <span class="agent-tag">Codex</span>
+        <span class="agent-tag">Copilot</span>
+        <span class="agent-tag">Gemini CLI</span>
+        <span class="agent-tag">Cursor</span>
+        <span class="agent-tag">Windsurf</span>
+        <span class="agent-tag">Devin</span>
+        <span class="agent-tag">Amp</span>
+      </td>
+    </tr>
+  </table>
+</div>
+
+</body>
+</html>

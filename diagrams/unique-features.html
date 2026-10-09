@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unique Features by Pack</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 48px; }
+  h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; color: #fff; }
+  .subtitle { font-size: 16px; color: #888; margin-bottom: 48px; }
+
+  .pack-section { margin-bottom: 48px; }
+  .pack-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .pack-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .pack-header h2 { font-size: 20px; font-weight: 700; }
+
+  .gstack-section .pack-dot { background: #a78bfa; }
+  .gstack-section h2 { color: #a78bfa; }
+  .pstack-section .pack-dot { background: #60a5fa; }
+  .pstack-section h2 { color: #60a5fa; }
+  .matt-section .pack-dot { background: #34d399; }
+  .matt-section h2 { color: #34d399; }
+
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .feature { padding: 20px; border-radius: 12px; }
+
+  .gstack-section .feature { background: #1a1520; border: 1px solid #2d2235; }
+  .pstack-section .feature { background: #151a20; border: 1px solid #1e2a35; }
+  .matt-section .feature { background: #151a18; border: 1px solid #1e352a; }
+
+  .feature-name { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .gstack-section .feature-name { color: #c4b5fd; }
+  .pstack-section .feature-name { color: #93c5fd; }
+  .matt-section .feature-name { color: #6ee7b7; }
+
+  .feature-desc { font-size: 12px; color: #999; line-height: 1.5; }
+
+  .shared-gaps { margin-top: 64px; }
+  .shared-gaps h2 { font-size: 20px; font-weight: 700; color: #ef4444; margin-bottom: 20px; }
+  .gaps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .gap { background: #1a1212; border: 1px solid #2d1a1a; border-radius: 12px; padding: 20px; }
+  .gap-name { font-size: 14px; font-weight: 700; color: #fca5a5; margin-bottom: 6px; }
+  .gap-desc { font-size: 12px; color: #999; line-height: 1.5; }
+  .gap-tag { font-size: 10px; color: #666; background: #1c1212; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<h1>What's Unique to Each Pack</h1>
+<p class="subtitle">Capabilities only found in one skill pack -- and what nobody covers</p>
+
+<div class="pack-section gstack-section">
+  <div class="pack-header"><span class="pack-dot"></span><h2>Only in Gstack</h2></div>
+  <div class="features">
+    <div class="feature">
+      <div class="feature-name">iOS QA on Real Hardware</div>
+      <div class="feature-desc">Vision-driven agent loop on a physical iPhone via USB CoreDevice tunnel. Screenshot, analyze, decide, act, verify.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Post-Deploy Canary</div>
+      <div class="feature-desc">Periodic screenshots, baseline comparison, anomaly alerts. Monitors production after every deploy.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Scrape-to-Skill Pipeline</div>
+      <div class="feature-desc">/scrape pulls data from a page, /skillify codifies the flow into a permanent browser-skill running in ~200ms.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Developer Psychographic</div>
+      <div class="feature-desc">/plan-tune builds a dual-track profile (declared vs observed preferences). "Stop asking me that" actually works.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Security Audit (CSO)</div>
+      <div class="feature-desc">OWASP-scoped security audit with PII/secrets redaction. The only pack with a dedicated security skill.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Cross-Session Decision Store</div>
+      <div class="feature-desc">Append-only, event-sourced JSONL. Decisions persist, are resurfaced before re-deciding, support superseding and redacting.</div>
+    </div>
+  </div>
+</div>
+
+<div class="pack-section pstack-section">
+  <div class="pack-header"><span class="pack-dot"></span><h2>Only in Pstack</h2></div>
+  <div class="features">
+    <div class="feature">
+      <div class="feature-name">24 Codified Principles</div>
+      <div class="feature-desc">Engineering rules as first-class skills agents must cite when applied. Laziness protocol, boundary discipline, fix root causes.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Arena (Competitive Design)</div>
+      <div class="feature-desc">Fan out N parallel candidates at the same task. Pick a base, graft the best parts from losers, verify result.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Comment Sicko</div>
+      <div class="feature-desc">A deliberately extreme anti-comment reviewer persona. Strips comments, fixes at root cause, encodes constraints as types/tests/lints.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Automate-me</div>
+      <div class="feature-desc">Mines your chat history to generate a personal -mode skill. Turns Pstack into a platform for your own workflow.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Benny Bug Pipeline</div>
+      <div class="feature-desc">Slack issue -> triage -> reproduce (through real UI, twice) -> bounded PR with before/after proof. Production-grade automation.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-name">33 Cataloged AI Slop Patterns</div>
+      <div class="feature-desc">The most exhaustive anti-slop inventory: em dashes, hedging, filler, abstract metaphors, chatbot phrases. Each with a fix.</div>
+    </div>
+  </div>
+</div>
+
+<div class="pack-section matt-section">
+  <div class="pack-header"><span class="pack-dot"></span><h2>Only in Matt's Skills</h2></div>
+  <div class="features">
+    <div class="feature">
+      <div class="feature-name">Grilling Primitive</div>
+      <div class="feature-desc">Frontier-based interview rounds: ask all independent questions at once, then recompute. The core beneath 5 different skills.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Teach (Any Subject)</div>
+      <div class="feature-desc">Stateful learning workspace with missions, quizzes, learning records. Users learn Korean, piano, guitar, certifications.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Wizard</div>
+      <div class="feature-desc">Generates interactive bash scripts for manual human procedures. Credential setup, migrations, service provisioning.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Tracer-Bullet Tickets</div>
+      <div class="feature-desc">Vertical-slice decomposition with explicit blocking edges. Each ticket is demoable. No horizontal "build all the DB first."</div>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Wait-What (3 Lines)</div>
+      <div class="feature-desc">Instead of telling the agent "be concise," says "wait, you lost me." Triggers re-explanation. Three lines by design.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-name">Prototype Preservation</div>
+      <div class="feature-desc">Prototypes land on prototype/&lt;name&gt; branches. Never deleted, never merged. Throwaway code as cited artifact.</div>
+    </div>
+  </div>
+</div>
+
+<div class="shared-gaps">
+  <h2>What Nobody Covers</h2>
+  <div class="gaps-grid">
+    <div class="gap">
+      <div class="gap-name">Database & Migrations</div>
+      <div class="gap-desc">Schema design, data migrations, database-specific tooling. All three assume someone else handles this.</div>
+      <div class="gap-tag">Missing from all 3</div>
+    </div>
+    <div class="gap">
+      <div class="gap-name">Accessibility</div>
+      <div class="gap-desc">No dedicated WCAG/a11y audit skill. Design review exists (Gstack) but doesn't focus on accessibility.</div>
+      <div class="gap-tag">Missing from all 3</div>
+    </div>
+    <div class="gap">
+      <div class="gap-name">CI/CD Authoring</div>
+      <div class="gap-desc">Deploy detection exists but no skill for writing or debugging CI pipelines, GitHub Actions, or infrastructure-as-code.</div>
+      <div class="gap-tag">Missing from all 3</div>
+    </div>
+    <div class="gap">
+      <div class="gap-name">Infrastructure / IaC</div>
+      <div class="gap-desc">Terraform, Kubernetes, Docker review. None of them cover infrastructure provisioning or management.</div>
+      <div class="gap-tag">Missing from all 3</div>
+    </div>
+    <div class="gap">
+      <div class="gap-name">Non-TypeScript Languages</div>
+      <div class="gap-desc">Process skills are language-agnostic. Code-level skills assume TypeScript. Nothing for Elixir, Python, Go, Rust, Java.</div>
+      <div class="gap-tag">Your Estack fills this</div>
+    </div>
+    <div class="gap">
+      <div class="gap-name">Cost Monitoring</div>
+      <div class="gap-desc">Post-deploy health checks exist but no skill for monitoring cloud spend or cost anomalies.</div>
+      <div class="gap-tag">Missing from all 3</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

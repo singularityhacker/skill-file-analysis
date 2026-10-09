@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build Chains Compared</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 48px; }
+  h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; color: #fff; }
+  .subtitle { font-size: 16px; color: #888; margin-bottom: 48px; }
+
+  .chains { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+
+  .chain { position: relative; }
+  .chain-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .chain-desc { font-size: 13px; color: #888; margin-bottom: 24px; }
+
+  .chain.gstack .chain-title { color: #a78bfa; }
+  .chain.pstack .chain-title { color: #60a5fa; }
+  .chain.matt .chain-title { color: #34d399; }
+
+  .step { position: relative; padding: 16px 20px; border-radius: 12px; margin-bottom: 8px; }
+  .step::after { content: ''; position: absolute; left: 50%; bottom: -8px; transform: translateX(-50%); width: 2px; height: 8px; }
+  .step:last-child::after { display: none; }
+
+  .chain.gstack .step { background: #1a1520; border: 1px solid #2d2235; }
+  .chain.gstack .step::after { background: #2d2235; }
+  .chain.pstack .step { background: #151a20; border: 1px solid #1e2a35; }
+  .chain.pstack .step::after { background: #1e2a35; }
+  .chain.matt .step { background: #151a18; border: 1px solid #1e352a; }
+  .chain.matt .step::after { background: #1e352a; }
+
+  .step-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .step-detail { font-size: 12px; color: #888; line-height: 1.4; }
+
+  .chain.gstack .step-name { color: #c4b5fd; }
+  .chain.pstack .step-name { color: #93c5fd; }
+  .chain.matt .step-name { color: #6ee7b7; }
+
+  .arrow { text-align: center; color: #333; font-size: 18px; margin: 4px 0; }
+
+  .phase-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: #555; margin-bottom: 8px; margin-top: 16px; padding-left: 4px; }
+
+  .unique-badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 4px; margin-left: 8px; font-weight: 600; }
+  .chain.gstack .unique-badge { background: #2d1f45; color: #c4b5fd; }
+  .chain.pstack .unique-badge { background: #1e2d45; color: #93c5fd; }
+  .chain.matt .unique-badge { background: #1e3528; color: #6ee7b7; }
+</style>
+</head>
+<body>
+
+<h1>The Main Build Chains</h1>
+<p class="subtitle">How each pack sequences the journey from idea to shipped code</p>
+
+<div class="chains">
+
+  <div class="chain gstack">
+    <div class="chain-title">Gstack</div>
+    <div class="chain-desc">The Review Gauntlet</div>
+
+    <div class="phase-label">Think</div>
+    <div class="step">
+      <div class="step-name">/office-hours</div>
+      <div class="step-detail">YC-style brainstorm. Reframes the idea before code exists.</div>
+    </div>
+    <div class="arrow">&darr;</div>
+    <div class="step">
+      <div class="step-name">/autoplan <span class="unique-badge">Unique</span></div>
+      <div class="step-detail">CEO + Design + DX + Eng reviews, auto-decided. One command.</div>
+    </div>
+    <div class="arrow">&darr;</div>
+    <div class="step">
+      <div class="step-name">/spec</div>
+      <div class="step-detail">Precise spec in 5 phases. Files a GitHub issue.</div>
+    </div>
+
+    <div class="phase-label">Build</div>
+    <div class="arrow">&darr;</div>
+    <div class="step">
+      <div class="step-name">Implementation</div>
+      <div class="step-detail">Manual or agent in worktree. "Boil the ocean."</div>
+    </div>
+    <div class="arrow">&darr;</div>
+    <div class="step">
+      <div class="step-name">/review</div>
+      <div class="step-detail">SQL safety, LLM trust boundaries, structural issues.</div>
+    </div>
+    <div class="arrow">&darr;</div>
+    <div class="step">
+      <div class="step-name">/qa</div>
+      <div class="step-detail">Browser + API + CLI testing. Fixes bugs in-place.</div>
+    </div>
+
+    <div class="phase-label">Ship</div>
+    <div class="arrow">&darr;</div>
+    <div class="step">
+      <div class="step-name">/ship</div>
+      <div class="step-detail">Version bump, changelog, PR. Workspace-aware queue.</div>
+    </div>
+    <div class="arrow">&darr;</div>
+    <div class="step">
+      <div class="step-name">/land-and-deploy</div>
+      <div class="step-detail">Merge, CI, deploy, verify production health.</div>
+    </div>
+    <div class="arrow">&darr;</div>
+    <div class="step">
+      <div class="step-name">/canary <span class="unique-badge">Unique</span></div>
+      <div class="step-detail">Post-deploy monitoring. Periodic screenshots, anomaly alerts.</div>
+    </div>
+  </div>
+
+  <div class="chain pstack">
+    <div class="chain-title">Pstack</div>
+    <div class="chain-desc">The Playbook Router</div>
+
+    <div class="phase-label">Understand</div>
+    <div class="step">
+      <div class="step-name">Describe goal</div>
+      <div class="step-detail">User describes what they want in plain language.</div>
+    </div>
+    <div class="arrow">&darr;</div>
+    <div class="step">
+      <div class="step-name">/poteto-mode <span class="unique-badge">Unique</span></div>
+      <div class="step-detail">Matches to 1 of 23 playbooks. Routes the work.</div>
+    </div>
+    <div class="arrow">&darr;</div>
+    <div class="step">
+      <div class="step-name">/how + /why</div>
+      <div class="step-detail">Understand the codebase before changing it.</div>
+    </div>
+
+    <div class="phase-label">Design</div>
+    <div class="arrow">&darr;</div>
+    <div class="step">
+      <div class="step-name">/architect</div>
+      <div class="step-detail">Types, signatures, module boundaries before code.</div>
+    </div>
+    <div class="arrow">&darr;</div>
+    <div class="step">
+      <div class="step-name">/arena <span class="unique-badge">Unique</span></div>
+      <div class="step-detail">N parallel candidates compete. Best parts grafted together.</div>
+    </div>
+
+    <div class="phase-label">Build</div>
+    <div class="arrow">&darr;</div>
+    <div class="step">
+      <div class="step-name">/tdd</div>
+      <div class="step-detail">Failing test first, then fix. Pragmatic skip when impractical.</div>
+    </div>
+    <div class="arrow">&darr;</div>
+    <div class="step">
+      <div class="step-name">/interrogate <span class="unique-badge">Unique</span></div>
+      <div class="step-detail">Multi-model adversarial review. Act / Consider / Noted / Dismissed.</div>
+    </div>
+
+    <div class="phase-label">Ship</div>
+    <div class="arrow">&darr;</div>
+    <div class="step">
+      <div class="step-name">PR playbook</div>
+      <div class="step-detail">Small ordered commits, conventional-commits title.</div>
+    </div>
+    <div class="arrow">&darr;</div>
+    <div class="step">
+      <div class="step-name">/reflect</div>
+      <div class="step-detail">Capture learnings, route to concrete skill edits.</div>
+    </div>
+  </div>
+
+  <div class="chain matt">
+    <div class="chain-title">Matt Pocock's Skills</div>
+    <div class="chain-desc">The Composable Chain</div>
+
+    <div class="phase-label">Align</div>
+    <div class="step">
+      <div class="step-name">/grill-with-docs <span class="unique-badge">Unique</span></div>
+      <div class="step-detail">Interview. Resolve terms to GLOSSARY.md, decisions to ADRs.</div>
+    </div>
+    <div class="arrow">&darr;</div>
+    <div class="step">
+      <div class="step-name">/to-spec</div>
+      <div class="step-detail">Synthesize decisions into spec. Agree seams before writing.</div>
+    </div>
+    <div class="arrow">&darr;</div>
+    <div class="step">
+      <div class="step-name">/to-tickets <span class="unique-badge">Unique</span></div>
+      <div class="step-detail">Vertical-slice tickets with blocking edges. Tracer bullets.</div>
+    </div>
+
+    <div class="phase-label">Build</div>
+    <div class="arrow">&darr;</div>
+    <div class="step">
+      <div class="step-name">/implement</div>
+      <div class="step-detail">TDD at pre-agreed seams. One ticket per session.</div>
+    </div>
+    <div class="arrow">&darr;</div>
+    <div class="step">
+      <div class="step-name">/code-review</div>
+      <div class="step-detail">Two axes: standards (Fowler smells) + spec compliance.</div>
+    </div>
+
+    <div class="phase-label">Ship</div>
+    <div class="arrow">&darr;</div>
+    <div class="step">
+      <div class="step-name">/pr</div>
+      <div class="step-detail">Summary (visual) + Evidence (before/after) + Merge Danger.</div>
+    </div>
+    <div class="arrow">&darr;</div>
+    <div class="step">
+      <div class="step-name">/retro</div>
+      <div class="step-detail">Propose environment improvements. Most severe first.</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

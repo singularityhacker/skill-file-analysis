@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skill Pack Overview</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 48px; }
+  h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; color: #fff; }
+  .subtitle { font-size: 16px; color: #888; margin-bottom: 48px; }
+
+  .packs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; }
+
+  .pack { border-radius: 16px; padding: 32px; position: relative; overflow: hidden; }
+  .pack::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
+
+  .pack.gstack { background: #1a1520; border: 1px solid #2d2235; }
+  .pack.gstack::before { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+
+  .pack.pstack { background: #151a20; border: 1px solid #1e2a35; }
+  .pack.pstack::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+
+  .pack.matt { background: #151a18; border: 1px solid #1e352a; }
+  .pack.matt::before { background: linear-gradient(90deg, #10b981, #34d399); }
+
+  .pack-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+  .pack-name { font-size: 22px; font-weight: 700; }
+  .pack-author { font-size: 13px; color: #888; margin-top: 4px; }
+  .skill-count { font-size: 42px; font-weight: 800; line-height: 1; }
+  .skill-count-label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+
+  .pack.gstack .skill-count { color: #a78bfa; }
+  .pack.pstack .skill-count { color: #60a5fa; }
+  .pack.matt .skill-count { color: #34d399; }
+
+  .philosophy { font-size: 14px; line-height: 1.6; color: #aaa; margin-bottom: 20px; padding: 12px 16px; border-radius: 8px; font-style: italic; }
+  .pack.gstack .philosophy { background: #1f1828; border-left: 3px solid #8b5cf6; }
+  .pack.pstack .philosophy { background: #1a2028; border-left: 3px solid #3b82f6; }
+  .pack.matt .philosophy { background: #1a2520; border-left: 3px solid #10b981; }
+
+  .categories { list-style: none; }
+  .categories li { font-size: 13px; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; }
+  .categories li:last-child { border-bottom: none; }
+  .cat-name { color: #ccc; }
+  .cat-count { color: #888; font-weight: 600; font-size: 12px; background: rgba(255,255,255,0.06); padding: 2px 8px; border-radius: 10px; }
+
+  .footer-row { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+  .tag { font-size: 11px; padding: 4px 10px; border-radius: 6px; font-weight: 500; }
+  .pack.gstack .tag { background: #2d1f45; color: #c4b5fd; }
+  .pack.pstack .tag { background: #1e2d45; color: #93c5fd; }
+  .pack.matt .tag { background: #1e3528; color: #6ee7b7; }
+</style>
+</head>
+<body>
+
+<h1>The Three Skill Packs</h1>
+<p class="subtitle">A side-by-side comparison of scope, philosophy, and coverage</p>
+
+<div class="packs">
+
+  <div class="pack gstack">
+    <div class="pack-header">
+      <div>
+        <div class="pack-name">Gstack</div>
+        <div class="pack-author">Garry Tan (YC)</div>
+      </div>
+      <div style="text-align: right">
+        <div class="skill-count">50+</div>
+        <div class="skill-count-label">Skills</div>
+      </div>
+    </div>
+    <div class="philosophy">"Boil the Ocean. The marginal cost of completeness is near-zero with AI."</div>
+    <ul class="categories">
+      <li><span class="cat-name">Planning & Strategy</span><span class="cat-count">8</span></li>
+      <li><span class="cat-name">Design System</span><span class="cat-count">4</span></li>
+      <li><span class="cat-name">Code Review & Quality</span><span class="cat-count">5</span></li>
+      <li><span class="cat-name">QA & Testing</span><span class="cat-count">4</span></li>
+      <li><span class="cat-name">iOS QA</span><span class="cat-count">5</span></li>
+      <li><span class="cat-name">Browser & Web Automation</span><span class="cat-count">6</span></li>
+      <li><span class="cat-name">Release & Deploy</span><span class="cat-count">8</span></li>
+      <li><span class="cat-name">Safety & Scoping</span><span class="cat-count">4</span></li>
+      <li><span class="cat-name">Security</span><span class="cat-count">1</span></li>
+      <li><span class="cat-name">Operational / Memory</span><span class="cat-count">7</span></li>
+      <li><span class="cat-name">Utilities</span><span class="cat-count">2</span></li>
+    </ul>
+    <div class="footer-row">
+      <span class="tag">TypeScript/Bun</span>
+      <span class="tag">Claude Code</span>
+      <span class="tag">macOS-first</span>
+    </div>
+  </div>
+
+  <div class="pack pstack">
+    <div class="pack-header">
+      <div>
+        <div class="pack-name">Pstack</div>
+        <div class="pack-author">Lauren Tan (Cursor)</div>
+      </div>
+      <div style="text-align: right">
+        <div class="skill-count">55</div>
+        <div class="skill-count-label">Skills</div>
+      </div>
+    </div>
+    <div class="philosophy">"If you want to go fast, go deep first."</div>
+    <ul class="categories">
+      <li><span class="cat-name">Router / Meta-workflow</span><span class="cat-count">4</span></li>
+      <li><span class="cat-name">Understanding & Investigation</span><span class="cat-count">5</span></li>
+      <li><span class="cat-name">Design & Architecture</span><span class="cat-count">4</span></li>
+      <li><span class="cat-name">Build & Implementation</span><span class="cat-count">3</span></li>
+      <li><span class="cat-name">Prose & Cleanup</span><span class="cat-count">4</span></li>
+      <li><span class="cat-name">Verification & Measurement</span><span class="cat-count">4</span></li>
+      <li><span class="cat-name">Self-improvement</span><span class="cat-count">2</span></li>
+      <li><span class="cat-name">Automation (Benny)</span><span class="cat-count">3</span></li>
+      <li><span class="cat-name">Niche / Integration</span><span class="cat-count">1</span></li>
+      <li><span class="cat-name">Principles</span><span class="cat-count">24</span></li>
+    </ul>
+    <div class="footer-row">
+      <span class="tag">TypeScript</span>
+      <span class="tag">Cursor-first</span>
+      <span class="tag">Multi-model</span>
+    </div>
+  </div>
+
+  <div class="pack matt">
+    <div class="pack-header">
+      <div>
+        <div class="pack-name">Matt Pocock's Skills</div>
+        <div class="pack-author">Matt Pocock</div>
+      </div>
+      <div style="text-align: right">
+        <div class="skill-count">27</div>
+        <div class="skill-count-label">Skills</div>
+      </div>
+    </div>
+    <div class="philosophy">"Skills for Real Engineers, not vibe coding."</div>
+    <ul class="categories">
+      <li><span class="cat-name">Main Build Chain</span><span class="cat-count">7</span></li>
+      <li><span class="cat-name">On-ramps (external work)</span><span class="cat-count">3</span></li>
+      <li><span class="cat-name">Vocabulary / Reference</span><span class="cat-count">3</span></li>
+      <li><span class="cat-name">Standalones</span><span class="cat-count">8</span></li>
+      <li><span class="cat-name">Infrastructure</span><span class="cat-count">2</span></li>
+      <li><span class="cat-name">Productivity</span><span class="cat-count">7</span></li>
+    </ul>
+    <div class="footer-row">
+      <span class="tag">TypeScript</span>
+      <span class="tag">Cross-agent</span>
+      <span class="tag">Composable</span>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
